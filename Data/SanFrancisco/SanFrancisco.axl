@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ARCXML version="1.1">
+  <CONFIG>
+    <ENVIRONMENT>
+      <LOCALE country="US" language="en" variant="" />
+      <UIFONT color="0,0,0" name="SansSerif" size="12" style="regular" />
+      <SCREEN dpi="96" />
+    </ENVIRONMENT>
+    <MAP>
+      <PROPERTIES>
+	<ENVELOPE minx="-122.496415" miny="37.72468969798658" maxx="-122.384637" maxy="37.798958302013425" name="Initial_Extent" />
+	<MAPUNITS units="decimal_degrees" />
+	<FILTERCOORDSYS id="4326" />
+	<FEATURECOORDSYS id="4326" />
+      </PROPERTIES>
+      <WORKSPACES>
+	<SHAPEWORKSPACE name="shp_ws-0" directory="C:\Program Files\ArcGIS\ArcIMS\Samples\TutorialData\SanFrancisco" />
+      </WORKSPACES>
+      <LAYER type="featureclass" name="blockgroups" visible="true" id="0">
+	<DATASET name="blockgroups" type="polygon" workspace="shp_ws-0" />
+	<SIMPLERENDERER>
+	  <SIMPLEPOLYGONSYMBOL boundarytransparency="1.0" filltransparency="1.0" fillcolor="239,239,174" boundarycaptype="round" boundarycolor="0,0,0" />
+	</SIMPLERENDERER>
+	<EXTENSION type="Extract">
+	  <EXTRACTPARAMS clip="true" />
+	</EXTENSION>
+      </LAYER>
+      <LAYER type="featureclass" name="streets" visible="true" id="1" maxscale="1:43000">
+	<DATASET name="streets" type="line" workspace="shp_ws-0" />
+	<GROUPRENDERER>
+	  <SIMPLERENDERER>
+	    <SIMPLELINESYMBOL width="1" captype="round" color="0,153,51" />
+	  </SIMPLERENDERER>
+	  <SCALEDEPENDENTRENDERER lower="1:1" upper="1:15000">
+	    <SIMPLELABELRENDERER field="NAME" labelpriorities="0,0,0,0,0,0,0,0" linelabelposition="placeabove">
+	      <TEXTSYMBOL antialiasing="true" font="Arial" fontstyle="regular" fontsize="10" fontcolor="14,96,14" />
+	    </SIMPLELABELRENDERER>
+	  </SCALEDEPENDENTRENDERER>
+	</GROUPRENDERER>
+	<EXTENSION type="Geocode">
+	  <GCSTYLE name="USAddressZ">
+	    <GCFIELD id="FromLeft" name="L_F_ADD" />
+	    <GCFIELD id="FromRight" name="R_F_ADD" />
+	    <GCFIELD id="ToLeft" name="L_T_ADD" />
+	    <GCFIELD id="ToRight" name="R_T_ADD" />
+	    <GCFIELD id="PreDir" name="PREFIX" />
+	    <GCFIELD id="StreetName" name="NAME" />
+	    <GCFIELD id="StreetType" name="TYPE" />
+	    <GCFIELD id="SufDir" name="SUFFIX" />
+	    <GCFIELD id="LeftZone" name="ZIPL" />
+	    <GCFIELD id="RightZone" name="ZIPR" />
+	  </GCSTYLE>
+	</EXTENSION>
+      </LAYER>
+      <LAYER type="featureclass" name="highways" visible="true" id="2">
+	<DATASET name="highways" type="line" workspace="shp_ws-0" />
+	<GROUPRENDERER>
+	  <SIMPLERENDERER>
+	    <SIMPLELINESYMBOL width="2" captype="round" color="0,0,204" />
+	  </SIMPLERENDERER>
+	  <SCALEDEPENDENTRENDERER lower="1:1" upper="1:100000">
+	    <SIMPLELABELRENDERER field="HWYNAME" labelpriorities="0,0,0,0,0,0,0,0" linelabelposition="placeabove">
+	      <TEXTSYMBOL antialiasing="true" font="Arial" fontstyle="regular" fontsize="11" />
+	    </SIMPLELABELRENDERER>
+	  </SCALEDEPENDENTRENDERER>
+	</GROUPRENDERER>
+      </LAYER>
+      <LAYER type="featureclass" name="customers" visible="true" id="3" maxscale="1:72000">
+	<DATASET name="customers" type="point" workspace="shp_ws-0" />
+	<GROUPRENDERER>
+	  <SIMPLERENDERER>
+	    <SIMPLEMARKERSYMBOL color="44,127,252" type="square" width="4" />
+	  </SIMPLERENDERER>
+	  <SCALEDEPENDENTRENDERER lower="1:1" upper="1:18000">
+	    <SIMPLELABELRENDERER field="ADDRESS" labelpriorities="1,0,0,0,0,0,0,0" linelabelposition="placeabove">
+	      <TEXTSYMBOL antialiasing="true" font="Arial" fontstyle="regular" fontsize="10" fontcolor="0,0,153" />
+	    </SIMPLELABELRENDERER>
+	  </SCALEDEPENDENTRENDERER>
+	</GROUPRENDERER>
+      </LAYER>
+      <LAYER type="featureclass" name="pizza" visible="true" id="4" maxscale="1:100000">
+	<DATASET name="pizza" type="point" workspace="shp_ws-0" />
+	<GROUPRENDERER>
+	  <SIMPLERENDERER>
+	    <SIMPLEMARKERSYMBOL color="153,0,153" type="triangle" width="7" />
+	  </SIMPLERENDERER>
+	  <SCALEDEPENDENTRENDERER lower="1:1" upper="1:30000">
+	    <SIMPLELABELRENDERER field="ADDRESS" labelpriorities="1,0,0,0,0,0,0,0" linelabelposition="placeabove">
+	      <TEXTSYMBOL antialiasing="true" font="Arial" fontstyle="regular" fontsize="10" fontcolor="102,0,102" />
+	    </SIMPLELABELRENDERER>
+	  </SCALEDEPENDENTRENDERER>
+	</GROUPRENDERER>
+      </LAYER>
+      <LAYER type="featureclass" name="stores" visible="true" id="5" maxscale="1:300000">
+	<DATASET name="stores" type="point" workspace="shp_ws-0" />
+	<SIMPLERENDERER>
+	  <SIMPLEMARKERSYMBOL outline="100,0,0" color="255,0,0" type="star" width="14" />
+	</SIMPLERENDERER>
+      </LAYER>
+    </MAP>
+  </CONFIG>
+</ARCXML>
