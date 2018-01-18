@@ -1,16 +1,20 @@
-import os
+
 import arcpy
 import sys
 from arcpy import env
 
-scriptPath = os.path.dirname(__file__)
-os.chdir(scriptPath)
-env.workspace = r"..\..\..\Data\Canada\province.shp"
+##scriptPath = os.path.dirname(__file__)
+##os.chdir(scriptPath)
+##env.workspace = r"..\..\..\Data\Canada\province.shp"
 
-if len(sys.argv) > 0:
-    print (sys.argv[2])
+fc = sys.argv[1]
+dsFc = arcpy.Describe(fc)
+
+if len(sys.argv) != 2:
+   print "Usage:  Describe03.py <FeatureClassName>"
+
 else:
-    print "Usage:  Describe03.py <FeatureClassName>"
 
-
-
+    print fmt.format ("BaseName", dsFc.BaseName)
+    print fmt.format ("CatalogPath", dsFc.CatalogPath)
+    print fmt.format ("DataType", dsFc.DataType)
