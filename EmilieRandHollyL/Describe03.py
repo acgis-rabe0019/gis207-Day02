@@ -5,14 +5,12 @@ from arcpy import env
 
 scriptPath = os.path.dirname(__file__)
 os.chdir(scriptPath)
+env.workspace = r"..\..\..\Data\Canada\province.shp"
 
-fc = r"..\..\..\Data\Canada\province.shp"
-
-if len(sys.argv[fc]): =! 2:
-    print "error message"
+if len(sys.argv) > 0:
+    print (sys.argv[2])
 else:
-    print
+    print "Usage:  Describe03.py <FeatureClassName>"
 
-else:
 
 
