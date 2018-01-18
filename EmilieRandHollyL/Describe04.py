@@ -1,8 +1,8 @@
 #-------------------------------------------------------------------------------
-# Name:        module1
+# Name:        Describe04
 # Purpose:
 #
-# Author:      holly
+# Author:      holly long, emilie rabeau
 #
 # Created:     18-01-2018
 # Copyright:   (c) holly 2018
@@ -11,7 +11,8 @@
 import sys
 arcpy = None
 
-
+scriptPath = os.path.dirname(__file__)
+os.chdir(scriptPath)
 
 def main():
 
@@ -30,6 +31,8 @@ def setArcPy():
     global arcpy
     if arcpy == None:
         import arcpy
+    env.workspace = r"..\..\..\Data\Canada\province.shp"
+    dsFc = arcpy.Describe(env.workspace)
 
 if __name__=="__main__":
     main()
