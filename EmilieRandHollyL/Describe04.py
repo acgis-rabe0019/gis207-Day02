@@ -19,11 +19,12 @@ def setArcPy():
 def main():
 
     if len(sys.argv) != 2:
-        print "Usage:  Describe03.py <FeatureClassName>"
+        print "Usage:  Describe04.py <FeatureClassName>"
 
     else:
         setArcPy()
         fc=sys.argv[1]
+
         dsFc=arcpy.Describe(fc)
         fmt = "{:13}: {}"
         print fmt.format ("BaseName", dsFc.BaseName)

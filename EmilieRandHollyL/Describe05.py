@@ -19,7 +19,7 @@ def setArcPy():
 def main():
 
     if len(sys.argv) != 2:
-        print "Usage:  Describe03.py <FeatureClassName>"
+        print "Usage:  Describe05.py <FeatureClassName>"
 
     else:
         setArcPy()

@@ -1,9 +1,38 @@
-import arcpy
-from arcpy import env
+#-------------------------------------------------------------------------------
+# Name:        List02.py
+# Purpose:
+#
+# Author:      holly long, emilie rabeau
+#
+# Created:     18-01-2018
+# Copyright:   (c) holly 2018
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+import sys
+arcpy = None
 
-env.workspace=r"..\..\..\Data\Canada"
+def setArcPy():
+    global arcpy
+    if arcpy == None:
+        import arcpy
 
-fclist=arcpy.ListFeatureClasses(feature_type="Line")
+def main():
 
-for fc in fclist:
-    print fc
+    if len(sys.argv) != 2:
+        print "Usage:  List02.py <FeatureClassName>"
+
+    else:
+        setArcPy()
+        fc=sys.argv[1]
+
+        if arcpy.Exists(fc):
+            fclist = arcpy.ListFeatureClasses(fc)
+            for fc in fclist:
+                print fc
+
+        else:
+            print "{} does not exists".format(fc)
+
+if __name__=="__main__":
+    main()
+
