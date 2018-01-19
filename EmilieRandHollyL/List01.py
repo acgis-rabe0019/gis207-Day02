@@ -1,9 +1,9 @@
 import arcpy
 from arcpy import env
 
-env.workspace=r"..\..\..\Data\Canada"
+env.workspace=r"..\..\..\Data\SanFrancisco"
 
-fclist=arcpy.ListFeatureClasses(feature_type="Line")
+fclist=arcpy.ListFeatureClasses()
 
 for fc in fclist:
     print fc
