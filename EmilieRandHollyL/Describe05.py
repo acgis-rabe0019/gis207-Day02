@@ -24,7 +24,7 @@ def main():
     else:
         setArcPy()
         fc=sys.argv[1]
-        dsEx.arcpy.Exists(fc)
+        dsEx=arcpy.Exists(fc)
         dsFc=arcpy.Describe(fc)
         fmt = "{:13}: {}"
         print fmt.format ("BaseName", dsFc.BaseName)
