@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        Describe04
+# Name:        Describe05
 # Purpose:
 #
 # Author:      holly long, emilie rabeau
@@ -24,12 +24,16 @@ def main():
     else:
         setArcPy()
         fc=sys.argv[1]
-        dsEx=arcpy.Exists(fc)
-        dsFc=arcpy.Describe(fc)
-        fmt = "{:13}: {}"
-        print fmt.format ("BaseName", dsFc.BaseName)
-        print fmt.format ("CatalogPath", dsFc.CatalogPath)
-        print fmt.format ("DataType", dsFc.DataType)
+
+        if arcpy.Exists(fc):
+            dsFc=arcpy.Describe(fc)
+            fmt = "{:13}: {}"
+            print fmt.format ("BaseName", dsFc.BaseName)
+            print fmt.format ("CatalogPath", dsFc.CatalogPath)
+            print fmt.format ("DataType", dsFc.DataType)
+
+        else:
+            print "{} does not exists".format(fc)
 
 if __name__=="__main__":
     main()
