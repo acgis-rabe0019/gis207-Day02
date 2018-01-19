@@ -27,20 +27,19 @@ def main():
 
         if arcpy.Exists(fc):
             dsFc=arcpy.Describe(fc)
-            fmt = "{:13}: {}"
-            print fmt.format ("BaseName", dsFc.BaseName)
-            print fmt.format ("CatalogPath", dsFc.CatalogPath)
-            print fmt.format ("DataType", dsFc.DataType)
+            fields=dsFc.Fields
+            fmt = "{:15} {:15} {:>5}"
+            headings = ("Field Name", "Field Type", "Length")
+
+            print fmt.format(*headings)
+            print fmt.format(len(headings[0])*'-',len(headings[1])*'-',len(headings[2])*'-')
+            for field in fields:
+                print  fmt.format(field.name, field.type, field.Length)
 
         else:
             print "{} does not exists".format(fc)
 
-    fmt = "{:15} {:15} {:->4}"
-    headings = ("Field Name", "Field Type", "Length")
 
-    print fmt.format(*headings)
-    print fmt.format(len(headings[0])*'-',len(headings[1])*'-',len(headings[2])*'-')
-    print fmt.format( )
 
 if __name__=="__main__":
     main()
