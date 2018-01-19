@@ -7,3 +7,4 @@ fclist=arcpy.ListFeatureClasses(feature_type="Line")
 
 for fc in fclist:
     print fc
+
