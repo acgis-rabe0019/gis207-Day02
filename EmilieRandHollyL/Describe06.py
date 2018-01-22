@@ -8,6 +8,8 @@
 # Copyright:   (c) holly 2018
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
+#Command Line Argument Used: ..\..\..\Data\Canada\province.shp
+
 import sys
 arcpy = None
 

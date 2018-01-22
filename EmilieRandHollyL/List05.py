@@ -8,28 +8,15 @@
 # Copyright:   (c) holly 2018
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-import sys
-arcpy = None
+# Command Line Arugument used: ..\..\..\Data
 
-def setArcPy():
-    global arcpy
-    if arcpy == None:
-        import arcpy
+import os
 
+rootFolder = r"..\..\..\Data"
+fileList = []
+for root, dirs, files in os.walk(rootFolder):
+    for f in files:
+        if f.find(".shp") >= 0:
+            print os.path.join(root, f)
 
-if len(sys.argv) != 2:
-    print "Usage:  List05.py <FeatureClassName>"
-    sys.exit()
-
-else:
-    setArcPy()
-
-    arcpy.env.workspace=sys.argv[1]
-
-    if arcpy.Exists(sys.argv[1]):
-        fwork = arcpy.ListWorkspaces()
-        for f in fwork:
-            print f
-
-    else:
-        print "{} does not exists".format(sys.argv[1])
+print "All done."

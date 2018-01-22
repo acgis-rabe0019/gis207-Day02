@@ -1,3 +1,15 @@
+#-------------------------------------------------------------------------------
+# Name:        Describe03.py
+# Purpose:
+#
+# Author:      holly long, emilie rabeau
+#
+# Created:     18-01-2018
+# Copyright:   (c) holly 2018
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+# Command Line Arugument used: ..\..\..\Data\Canada\province.shp\
+
 import os
 import arcpy
 import sys
