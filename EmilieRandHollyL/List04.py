@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        List03
+# Name:        List04
 # Purpose:
 #
 # Author:      holly long, emilie rabeau
@@ -18,7 +18,7 @@ def setArcPy():
 
 
 if len(sys.argv) != 2:
-    print "Usage:  List03.py <FeatureClassName>"
+    print "Usage:  List04.py <FeatureClassName>"
     sys.exit()
 
 else:
@@ -27,9 +27,9 @@ else:
     arcpy.env.workspace=sys.argv[1]
 
     if arcpy.Exists(sys.argv[1]):
-        fclist = arcpy.ListFeatureClasses(feature_type="Line")
-        for f in fclist:
+        fwork = arcpy.ListWorkspaces()
+        for f in fwork:
             print f
 
     else:
-        print "{} does not exists".format(fc)
+        print "{} does not exists".format(sys.argv[1])
