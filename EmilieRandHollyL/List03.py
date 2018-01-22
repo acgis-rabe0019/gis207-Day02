@@ -8,12 +8,28 @@
 # Copyright:   (c) holly 2018
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-import arcpy
-from arcpy import env
+import sys
+arcpy = None
 
-env.workspace=r"..\..\..\Data\Canada"
+def setArcPy():
+    global arcpy
+    if arcpy == None:
+        import arcpy
 
-fclist=arcpy.ListFeatureClasses(feature_type="Line")
 
-for fc in fclist:
-    print fc
+if len(sys.argv) != 2:
+    print "Usage:  List02.py <FeatureClassName>"
+    sys.exit()
+
+else:
+    setArcPy()
+
+    arcpy.env.workspace=sys.argv[1]
+
+    if arcpy.Exists(sys.argv[1]):
+        fclist = arcpy.ListFeatureClasses(feature_type="Line")
+        for f in fclist:
+            print f
+
+    else:
+        print "{} does not exists".format(fc)

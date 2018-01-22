@@ -16,23 +16,21 @@ def setArcPy():
     if arcpy == None:
         import arcpy
 
-def main():
 
-    if len(sys.argv) != 2:
-        print "Usage:  List02.py <FeatureClassName>"
+if len(sys.argv) != 2:
+    print "Usage:  List02.py <FeatureClassName>"
+    sys.exit()
+
+else:
+    setArcPy()
+
+    arcpy.env.workspace=sys.argv[1]
+
+    if arcpy.Exists(sys.argv[1]):
+        fclist = arcpy.ListFeatureClasses()
+        for f in fclist:
+            print f
 
     else:
-        setArcPy()
-        fc=sys.argv[1]
-
-        if arcpy.Exists(fc):
-            fclist = arcpy.ListFeatureClasses(fc)
-            for fc in fclist:
-                print fc
-
-        else:
-            print "{} does not exists".format(fc)
-
-if __name__=="__main__":
-    main()
+        print "{} does not exists".format(fc)
 
