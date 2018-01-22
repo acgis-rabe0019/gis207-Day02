@@ -32,4 +32,4 @@ else:
             print f
 
     else:
-        print "{} does not exists".format(fc)
+        print "{} does not exists".format(sys.argv[1])
