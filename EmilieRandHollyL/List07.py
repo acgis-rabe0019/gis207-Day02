@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        List06
+# Name:        List07
 # Purpose:
 #
 # Author:      holly long, emilie rabeau
@@ -16,11 +16,9 @@ import arcpy
 rootFolder = r"..\..\..\Data"
 fileList = []
 
-if os.path.exists(rootFolder):
-    print "Usage:  List06.py <RootFolder>"
 
-    for root, dirs, files in os.walk(rootFolder):
-        print os.path.abspath(rootFolder)
+if os.path.exists(rootFolder):
+    print "Usage:  List07.py <RootFolder>"
 
     arcpy.env.workspace=sys.argv[1]
 
@@ -29,6 +27,10 @@ if os.path.exists(rootFolder):
         for f in fwork:
             print f
 
+    for root, dirs, files in os.walk(rootFolder):
+        for i in files:
+            if i.find(".shp") >= 0:
+                print os.path.join(rootFolder, i)
+
 else:
     print "{} does not exists".format(rootFolder)
-
