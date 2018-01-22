@@ -14,9 +14,14 @@ import os
 
 rootFolder = r"..\..\..\Data"
 fileList = []
-for root, dirs, files in os.walk(rootFolder):
-    for f in files:
-        if f.find(".shp") >= 0:
-            print os.path.join(root, f)
 
-print "All done."
+if os.path.exists(rootFolder):
+    print "Usage:  List05.py <RootFolder>"
+
+    for root, dirs, files in os.walk(rootFolder):
+        print os.path.join(root)
+else:
+    print "{} does not exists".format(rootFolder)
+
+
+
