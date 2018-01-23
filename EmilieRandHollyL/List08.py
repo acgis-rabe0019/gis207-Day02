@@ -29,6 +29,10 @@ else:
     arcpy.env.workspace = sys.argv[1]
 
     if arcpy.Exists(sys.argv[1]):
+        fileOut = open(sys.arg[2],"w")
+        fileOut.write("file")
+        file.close
+
         for root, dirs, files in os.walk(sys.argv[1]):
             arcpy.env.workspace = root
             workspaces = arcpy.ListWorkspaces('*','All')
@@ -43,9 +47,6 @@ else:
                     print os.path.join(workspace, feature_class)
                 print '\n'
 
-                fileOut = open(r"C:\Users\mie_r\Documents\acgis\gis4207_Customization_1\Data\outputfilename.txt", 'w')
-                fileOut.write(ww)
-                file.close
 
     else:
         print "{} does not exists".format(root)
