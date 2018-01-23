@@ -11,26 +11,37 @@
 # Command Line Arugument used: ..\..\..\Data
 
 import os
-import arcpy
+import sys
+arcpy=None
 
-rootFolder = r"..\..\..\Data"
-fileList = []
+def setArcPy():
+    global arcpy
+    if arcpy == None:
+        import arcpy
 
-
-if os.path.exists(rootFolder):
-    print "Usage:  List07.py <RootFolder>"
-
-    arcpy.env.workspace=sys.argv[1]
-
-    if arcpy.Exists(sys.argv[1]):
-        fwork = arcpy.ListWorkspaces()
-        for f in fwork:
-            print f
-
-    for root, dirs, files in os.walk(rootFolder):
-        for i in files:
-            if i.find(".shp") >= 0:
-                print os.path.join(rootFolder, i)
+if len(sys.argv) != 2:
+    print "Usage: List07.py <RootFolder>"
+    sys.exit()
 
 else:
-    print "{} does not exists".format(rootFolder)
+    setArcPy()
+
+    arcpy.env.workspace = sys.argv[1]
+
+    if arcpy.Exists(sys.argv[1]):
+        for root, dirs, files in os.walk(sys.argv[1]):
+            arcpy.env.workspace = root
+            workspaces = arcpy.ListWorkspaces('*','All')
+
+            for workspace in workspaces:
+                print os.path.abspath(workspace)
+
+                arcpy.env.workspace = os.path.abspath(workspace)
+                fc = arcpy.ListFeatureClasses()
+
+                for feature_class in fc:
+                    print os.path.join(workspace, feature_class)
+                print '\n'
+
+    else:
+        print "{} does not exists".format(root)
