@@ -1,3 +1,14 @@
+#-------------------------------------------------------------------------------
+# Name:        Describe02
+
+# Purpose:
+#
+# Author:      holly long, emilie rabeau
+#
+# Created:     18-01-2018
+# Copyright:   (c) holly 2018
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
 import os
 import arcpy
 from arcpy import env

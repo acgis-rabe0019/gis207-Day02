@@ -8,10 +8,12 @@
 # Copyright:   (c) holly 2018
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-#Command Line Argument Used: ..\..\..\Data\SanFrancisco
+#Command Line Argument Used: ..\..\..\Data Line
 
 import sys
-arcpy = None
+import arcpy
+from arcpy import env
+
 
 def setArcPy():
     global arcpy
@@ -19,19 +21,21 @@ def setArcPy():
         import arcpy
 
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     print "Usage:  List03.py <FeatureClassName>"
     sys.exit()
 
 else:
     setArcPy()
+    fcdirectory=sys.argv[1]
+    fctype=sys.argv[2]
 
-    arcpy.env.workspace=sys.argv[1]
-
-    if arcpy.Exists(sys.argv[1]):
-        fclist = arcpy.ListFeatureClasses(feature_type="Line")
-        for f in fclist:
-            print f
+    env.workspace=fcdirectory
+    if arcpy.Exists(fcdirectory):
+        fclist = arcpy.ListFeatureClasses("",fctype)
+        for fc in fclist:
+            descFC=arcpy.Describe(fc)
+            print descFC.BaseName
 
     else:
-        print "{} does not exists".format(sys.argv[1])
+        print "{} does not exists".format(fcdirectory)

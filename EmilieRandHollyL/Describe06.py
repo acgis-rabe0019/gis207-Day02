@@ -18,30 +18,24 @@ def setArcPy():
     if arcpy == None:
         import arcpy
 
-def main():
 
-    if len(sys.argv) != 2:
-        print "Usage:  Describe06.py <FeatureClassName>"
+if len(sys.argv) != 2:
+    print "Usage:  Describe06.py <FeatureClassName>"
+
+else:
+    setArcPy()
+    fc=sys.argv[1]
+
+    if arcpy.Exists(fc):
+        dsFc=arcpy.Describe(fc)
+        fields=dsFc.Fields
+        fmt = "{:15} {:15} {:>5}"
+        headings = ("Field Name", "Field Type", "Length")
+
+        print fmt.format(*headings)
+        print fmt.format(len(headings[0])*'-',len(headings[1])*'-',len(headings[2])*'-')
+        for field in fields:
+            print  fmt.format(field.name, field.type, field.Length)
 
     else:
-        setArcPy()
-        fc=sys.argv[1]
-
-        if arcpy.Exists(fc):
-            dsFc=arcpy.Describe(fc)
-            fields=dsFc.Fields
-            fmt = "{:15} {:15} {:>5}"
-            headings = ("Field Name", "Field Type", "Length")
-
-            print fmt.format(*headings)
-            print fmt.format(len(headings[0])*'-',len(headings[1])*'-',len(headings[2])*'-')
-            for field in fields:
-                print  fmt.format(field.name, field.type, field.Length)
-
-        else:
-            print "{} does not exists".format(fc)
-
-
-
-if __name__=="__main__":
-    main()
+        print "{} does not exists".format(fc)
