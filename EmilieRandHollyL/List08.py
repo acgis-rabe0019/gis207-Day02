@@ -30,7 +30,7 @@ else:
     arcpy.env.workspace = sys.argv[1]
 
     if arcpy.Exists(sys.argv[1]):
-        outFileName=open(sys.argv[2], 'w+')
+        outFileName=open(sys.argv[2], 'w')
 
         for root, dirs, files in os.walk(sys.argv[1]):
             arcpy.env.workspace = root
@@ -47,8 +47,8 @@ else:
                     info2=os.path.join(workspace, feature_class)
                     outFileName.write(info2,"\n")
 
-            outFileName.write("\n")
+        outFileName.write("\n")
         outFileName.close()
-
     else:
         print "{} does not exists".format(root)
+
