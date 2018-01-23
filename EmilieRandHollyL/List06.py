@@ -11,24 +11,31 @@
 # Command Line Arugument used: ..\..\..\Data
 
 import os
-import arcpy
+import sys
+arcpy=None
 
-rootFolder = r"..\..\..\Data"
-fileList = []
+def setArcPy():
+    global arcpy
+    if arcpy == None:
+        import arcpy
 
-if os.path.exists(rootFolder):
-    print "Usage:  List06.py <RootFolder>"
-
-    for root, dirs, files in os.walk(rootFolder):
-        print os.path.abspath(rootFolder)
-
-    arcpy.env.workspace=sys.argv[1]
-
-    if arcpy.Exists(sys.argv[1]):
-        fwork = arcpy.ListWorkspaces()
-        for f in fwork:
-            print f
+if len(sys.argv) != 2:
+    print "Usage: List06.py <RootFolder>"
+    sys.exit()
 
 else:
-    print "{} does not exists".format(rootFolder)
+    setArcPy()
+
+    arcpy.env.workspace = sys.argv[1]
+
+    if arcpy.Exists(sys.argv[1]):
+        for root, dirs, files in os.walk(sys.argv[1]):
+            arcpy.env.workspace = root
+            workspaces = arcpy.ListWorkspaces('*','All')
+
+            for workspace in workspaces:
+                print os.path.abspath(workspace)
+
+    else:
+        print "{} does not exists".format(root)
 
