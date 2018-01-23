@@ -22,13 +22,20 @@ def setArcPy():
 
 
 if len(sys.argv) != 3:
-    print "Usage:  List03.py <FeatureClassName>"
+    print "Usage:  List03.py <FeatureClassName> <FeatureType>\n"
+    print "where FeatureType is one of "
+    print "     'Annotation', 'Arc', 'Dimension',"
+    print "     'Edge', 'Junction', 'Label', 'Line', 'Multipatch', 'Node', 'Point', "
+    print "     'Polygon', 'Polyline', 'Region', 'Route', 'Tic', 'All'"
     sys.exit()
 
 else:
     setArcPy()
     fcdirectory=sys.argv[1]
     fctype=sys.argv[2]
+    fctypes = ['Annotation', 'Arc', 'Dimension', 'Edge', 'Junction', 'Label',
+               'Line', 'Multipatch', 'Node', 'Point', 'Polygon', 'Polyline', 'Region', 'Route', 'Tic', 'All']
+    if fc in fctypes:
 
     env.workspace=fcdirectory
     if arcpy.Exists(fcdirectory):
