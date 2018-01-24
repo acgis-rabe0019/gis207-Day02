@@ -35,11 +35,11 @@ else:
     fctype=sys.argv[2]
     fctypes = ['Annotation', 'Arc', 'Dimension', 'Edge', 'Junction', 'Label',
                'Line', 'Multipatch', 'Node', 'Point', 'Polygon', 'Polyline', 'Region', 'Route', 'Tic', 'All']
-    if fc in fctypes:
 
     env.workspace=fcdirectory
-    if arcpy.Exists(fcdirectory):
-        fclist = arcpy.ListFeatureClasses("",fctype)
+    arcpy.Exists(fcdirectory)
+    fclist = arcpy.ListFeatureClasses("",fctype)
+    if (fctype in fctypes):
         for fc in fclist:
             descFC=arcpy.Describe(fc)
             print descFC.BaseName
