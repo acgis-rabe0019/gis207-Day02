@@ -8,7 +8,7 @@
 # Copyright:   (c) holly 2018
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-#Command Line Argument Used: ..\..\..\Data Line
+#Command Line Argument Used: ..\..\..\Data\SanFrancisco Line
 
 import sys
 import arcpy
@@ -35,16 +35,16 @@ else:
     fctype=sys.argv[2]
     fctypes = ['Annotation', 'Arc', 'Dimension', 'Edge', 'Junction', 'Label',
                'Line', 'Multipatch', 'Node', 'Point', 'Polygon', 'Polyline', 'Region', 'Route', 'Tic', 'All']
-    if Line in fctypes:
-        print 'yea'
+    if fc in fctypes:
+        print "Feature Class is not found"
 
 
     env.workspace=fcdirectory
-    arcpy.Exists(fcdirectory)
-    fclist = arcpy.ListFeatureClasses("",fctype)
-    for fc in fclist:
-        descFC=arcpy.Describe(fc)
-        print descFC.BaseName
+    if arcpy.Exists(fcdirectory):
+        fclist = arcpy.ListFeatureClasses("",fctype)
+        for fc in fclist:
+            descFC=arcpy.Describe(fc)
+            print descFC.BaseName
 
     else:
         print "{} does not exists".format(fcdirectory)
